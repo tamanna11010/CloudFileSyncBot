@@ -1,0 +1,6 @@
+@CloudFileSyncBotAPI_HostAddress = http://localhost:5018
+
+GET {{CloudFileSyncBotAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

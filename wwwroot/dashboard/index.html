@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Cloud File Sync Bot</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            margin: 0;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background: #0d6efd;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        #landingPage, #dashboardPage {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        #dashboardPage {
+            display: none;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #0d6efd;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+            button:hover {
+                background: #0b5ed7;
+            }
+
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .created {
+            background: #28a745;
+        }
+
+        .modified {
+            background: #ffc107;
+            color: black;
+        }
+
+        .deleted {
+            background: #dc3545;
+        }
+
+        #logStats {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .cloud-status {
+            float: right;
+            font-size: 14px;
+            color: #198754;
+        }
+
+        #lastUpdated {
+            margin-top: 10px;
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        ☁️ Cloud File Sync Bot
+    </header>
+
+    <!-- Landing Page -->
+    <section id="landingPage">
+        <h2>Start Monitoring Folders</h2>
+        <label for="folderInput">Enter folder paths (separated by commas):</label>
+        <input type="text" id="folderInput" placeholder="e.g. C:\Folder1, D:\MyFiles" />
+        <button id="startBtn">Start Monitoring</button>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboardPage">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>Dashboard</h2>
+            <div class="cloud-status">✅ Google Drive Sync Enabled</div>
+        </div>
+
+        <div class="controls">
+            <button id="pauseBtn">⏸️ Pause</button>
+            <button id="resumeBtn">▶️ Resume</button>
+            <span id="uploadStatus" style="margin-left:20px; font-weight:bold;"></span>
+
+            <input type="text" id="searchInput" placeholder="Search file path..." />
+            <select id="folderFilter">
+                <option value="">All Folders</option>
+            </select>
+            <button id="clearBtn">Clear Logs</button>
+            <button id="exportBtn">Export Logs</button>
+        </div>
+
+        <div id="logStats">Log Summary: 0 Created | 0 Modified | 0 Deleted</div>
+        <div id="lastUpdated">Last Updated: Never</div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>File Path</th>
+                    <th>Change Type</th>
+                    <th>Timestamp</th>
+                    <th>Folder Source</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody id="logTableBody"></tbody>
+        </table>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

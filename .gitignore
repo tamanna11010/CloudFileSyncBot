@@ -1,0 +1,8 @@
+bin/
+obj/
+
+.vs/
+
+credentials.json
+token.json/
+token.json
